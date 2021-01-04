@@ -20,15 +20,17 @@ Treinando o modelo:
 2) escolhendo colunas para serem as features;  X = DATA_FRAME[columns_names1, columns_names2, columns_names3, etc]
 3) Importando lib do modelo: 
   from sklearn.tree import DecisionTreeRegressor
+4) Especificando modelo e atribuindo um state fixo.  
+  name_model = DecisionTreeRegressor(random_state=1)
+  (Specify a number for random_state to ensure same results each run)
+
+5) Treinando o modelo:    
+  name_model.fit(X, y)  (usando toda a tabela)
+  
   from sklearn.model_selection import train_test_split
   train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 0)
   # the random_state argument guarantees we get the same split every time we run this script.
-4) Especificando modelo e atribuindo um state fixo.  
-  name_model = DecisionTreeRegressor(random_state=1)
-(Specify a number for random_state to ensure same results each run)
-5) Treinando o modelo:    
-  name_model.fit(X, y)  (usando toda a tabela)
-  melbourne_model.fit(train_X, train_y)   (usando parte para treino, preservando parte para validar)
+  name_model.fit(train_X, train_y)   (usando parte para treino, preservando parte para validar)
 
 Avaliar (Validar)
 1) Summarize comparing Validation Data vs Real Data into a single metric. Vejamos alguns tipos:
@@ -36,12 +38,10 @@ Avaliar (Validar)
 1.2) metrics lib: 
   from sklearn.metrics import mean_absolute_error  (MAE) 
   predicted_home_prices = melbourne_model.predict(X)  (usando tabela toda)
-  val_predictions = melbourne_model.predict(val_X)  (usando parte da tabela)
-  
   mean_absolute_error(y, predicted_home_prices)
-  print(mean_absolute_error(val_y, val_predictions))  (comparando com parte da tabela)
-
   
+  val_predictions = melbourne_model.predict(val_X)  (usando parte da tabela)
+  print(mean_absolute_error(val_y, val_predictions))  (comparando com parte da tabela)
   
 Previsões usando o modelo treinando
 1) predictions = name_model.predict(X.head()); onde X.head() são as primeiras linhas... usar as linhas desejadas aqui. ex.: (X)
