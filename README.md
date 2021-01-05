@@ -54,3 +54,5 @@ Pandas:
 Scikit-learn 
 The most popular library for modeling the types of data typically stored in DataFrames.
 
+R
+
